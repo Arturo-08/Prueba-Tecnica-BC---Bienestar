@@ -1,14 +1,27 @@
-##Spring Configuration
 server:
   port: 8080
 spring:
   application:
-    name: cryptoManager
+    name: "cryptoManager"
+  datasource:
+    url: "jdbc:h2:mem:test"
+    username: "sa"
+    password: "pass"
+    driverClassName: "org.h2.Driver"
+  jpa:
+    hibernate:
+      ddl-auto: "update"
+    show-sql: true
+    databasePlatform: "org.hibernate.dialect.H2Dialect"
+  security:
+    jwt:
+      secret: "jsd"
+      expiration-ms: 5000
   devtools:
     add-properties: false
   h2:
     console:
       enabled: true
-      path: /h2
+      path: "/h2"
   profiles:
-    include:
+    include: null

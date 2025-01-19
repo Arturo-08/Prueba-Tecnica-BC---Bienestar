@@ -1,23 +1,28 @@
 package co.com.bancolombia.jpa;
 
 import co.com.bancolombia.jpa.entities.CurrencyEntity;
+import co.com.bancolombia.jpa.entities.DataModelUserEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.repository.query.QueryByExampleExecutor;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface JPARepository extends CrudRepository<CurrencyEntity, Integer>, QueryByExampleExecutor<CurrencyEntity> {
+@Repository
+public interface JPARepository extends CrudRepository<CurrencyEntity, Integer> {
 
         @Query(value = """
-           SELECT 
-               u.name AS userName,
-               u.email AS userEmail,
+           SELECT            
+               u.name,  
+               u.email,
                ctry.name AS countryName,
+               curr.id,
                curr.name AS currencyName,
-               curr.symbol AS currencySymbol,
-               curr.exchange_rate AS exchangeRate
+               curr.symbol,
+               curr.exchange_rate 
            FROM 
                users u
            JOIN 
@@ -29,5 +34,5 @@ public interface JPARepository extends CrudRepository<CurrencyEntity, Integer>, 
            WHERE 
                u.id = :userId
            """, nativeQuery = true)
-        List<Object[]> findUserDetails(@Param("userId") int userId);
+        List<DataModelUserEntity> findUserDetails(@Param("userId") int userId);
 }

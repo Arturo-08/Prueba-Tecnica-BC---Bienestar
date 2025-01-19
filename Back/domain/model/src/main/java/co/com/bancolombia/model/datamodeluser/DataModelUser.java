@@ -18,5 +18,4 @@ public class DataModelUser {
     private String userEmail;
     private String countryName;
     private List<Currency> currencies;
-
 }

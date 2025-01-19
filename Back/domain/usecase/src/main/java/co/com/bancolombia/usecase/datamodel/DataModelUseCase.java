@@ -2,6 +2,7 @@ package co.com.bancolombia.usecase.datamodel;
 
 import co.com.bancolombia.model.datamodeluser.DataModelUser;
 import co.com.bancolombia.model.datamodeluser.gateways.DataModelUserRepository;
+
 import lombok.RequiredArgsConstructor;
 
 

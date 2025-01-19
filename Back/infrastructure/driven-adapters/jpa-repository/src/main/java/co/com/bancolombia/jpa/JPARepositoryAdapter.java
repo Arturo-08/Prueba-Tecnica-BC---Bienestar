@@ -1,46 +1,43 @@
 package co.com.bancolombia.jpa;
 
 import co.com.bancolombia.jpa.entities.CurrencyEntity;
+import co.com.bancolombia.jpa.entities.DataModelUserEntity;
 import co.com.bancolombia.jpa.helper.AdapterOperations;
 import co.com.bancolombia.model.currency.Currency;
 import co.com.bancolombia.model.datamodeluser.DataModelUser;
 import co.com.bancolombia.model.datamodeluser.gateways.DataModelUserRepository;
+import lombok.RequiredArgsConstructor;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
 
-@Repository
-public class JPARepositoryAdapter extends AdapterOperations<Currency, CurrencyEntity, Integer, JPARepository>
-implements DataModelUserRepository{
+@Service
+@RequiredArgsConstructor
+public class JPARepositoryAdapter implements DataModelUserRepository{
 
-    public JPARepositoryAdapter(JPARepository repository, ObjectMapper mapper) {
-        /**
-         *  Could be use mapper.mapBuilder if your domain model implement builder pattern
-         *  super(repository, mapper, d -> mapper.mapBuilder(d,ObjectModel.ObjectModelBuilder.class).build());
-         *  Or using mapper.map with the class of the object model
-         */
-        super(repository, mapper, d -> mapper.map(d, Currency.class/* change for domain model */));
-    }
+    private  final JPARepository repository;
 
     @Override
     public DataModelUser getInfoByUser(int id) {
 
-        List<Object[]> results = repository.findUserDetails(id);
+        List<DataModelUserEntity> results = repository.findUserDetails(id);
         if (results.isEmpty()) {
             results = null;
         }
-        Object[] userInfo = results.get(0);
-        String userName = (String) userInfo[0];
-        String userEmail = (String) userInfo[1];
-        String countryName = (String) userInfo[2];
+        DataModelUserEntity userInfo = results.get(0);
+        String userName =  userInfo.getUserName();
+        String userEmail =  userInfo.getUserEmail();
+        String countryName =  userInfo.getCountryName();
 
         List<Currency> currencies = results.stream()
                 .map(row -> new Currency(
-                        (String) row[3], // currencyName
-                        (String) row[4], // currencySymbol
-                        (float) row[5] // exchangeRate
+                        row.getId(),
+                        row.getCurrencyName(),
+                        row.getCurrencySymbol(),
+                        row.getExchangeRate()
                 ))
                 .toList();
 

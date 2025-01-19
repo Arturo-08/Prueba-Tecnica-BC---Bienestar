@@ -1,15 +1,15 @@
 package co.com.bancolombia.model.requestmodelid;
-import lombok.Builder;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 //import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 @Getter
 @Setter
-//@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor
 @Builder(toBuilder = true)
 public class RequestModelId {
     private int id;
+    public RequestModelId(int id) {
+        this.id = id;
+    }
 }

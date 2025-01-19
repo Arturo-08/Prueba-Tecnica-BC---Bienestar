@@ -4,15 +4,15 @@ spring:
   application:
     name: "cryptoManager"
   datasource:
-    url: "jdbc:h2:mem:test"
-    username: "sa"
-    password: "pass"
-    driverClassName: "org.h2.Driver"
+    url: "jdbc:mysql://localhost:3306/crypto_manager"
+    username: "root"
+    password: "PZAdcn67."
+    driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: "update"
     show-sql: true
-    databasePlatform: "org.hibernate.dialect.H2Dialect"
+    databasePlatform: "org.hibernate.dialect.MySQLDialect"
   security:
     jwt:
       secret: "jsd"

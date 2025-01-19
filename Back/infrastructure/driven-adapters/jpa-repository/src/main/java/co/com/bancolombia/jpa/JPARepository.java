@@ -1,5 +1,6 @@
 package co.com.bancolombia.jpa;
 
+import co.com.bancolombia.jpa.entities.CurrencyEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -7,7 +8,7 @@ import org.springframework.data.repository.query.QueryByExampleExecutor;
 
 import java.util.List;
 
-public interface JPARepository extends CrudRepository<Object, Integer>, QueryByExampleExecutor<Object> {
+public interface JPARepository extends CrudRepository<CurrencyEntity, Integer>, QueryByExampleExecutor<CurrencyEntity> {
 
         @Query(value = """
            SELECT 

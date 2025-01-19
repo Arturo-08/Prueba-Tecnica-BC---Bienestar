@@ -2,22 +2,27 @@ package co.com.bancolombia.listUsers;
 
 import co.com.bancolombia.model.requestmodelid.RequestModelId;
 import co.com.bancolombia.usecase.datamodel.DataModelUseCase;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping(value = "/api", consumes = MediaType.APPLICATION_JSON_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class generalController {
 
     private DataModelUseCase dataModelUseCase;
-
 
     @GetMapping("/health")
     public ResponseEntity<String> health() {
         return ResponseEntity.ok("Backend is running!");
     }
-    @PostMapping("/list-users")
+    @PostMapping(value = "/list-users")
     public ResponseEntity<String> listUsers( @RequestBody RequestModelId requestModelId) {
         ResponseEntity <String> response ;
         try{

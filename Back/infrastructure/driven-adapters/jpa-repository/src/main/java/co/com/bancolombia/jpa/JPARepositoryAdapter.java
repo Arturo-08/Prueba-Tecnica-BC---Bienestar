@@ -1,5 +1,6 @@
 package co.com.bancolombia.jpa;
 
+import co.com.bancolombia.jpa.entities.CurrencyEntity;
 import co.com.bancolombia.jpa.helper.AdapterOperations;
 import co.com.bancolombia.model.currency.Currency;
 import co.com.bancolombia.model.datamodeluser.DataModelUser;
@@ -11,7 +12,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class JPARepositoryAdapter extends AdapterOperations<DataModelUser, Object, Integer, JPARepository> {
+public class JPARepositoryAdapter extends AdapterOperations<Currency, CurrencyEntity, Integer, JPARepository>
+implements DataModelUserRepository{
 
     public JPARepositoryAdapter(JPARepository repository, ObjectMapper mapper) {
         /**
@@ -19,9 +21,10 @@ public class JPARepositoryAdapter extends AdapterOperations<DataModelUser, Objec
          *  super(repository, mapper, d -> mapper.mapBuilder(d,ObjectModel.ObjectModelBuilder.class).build());
          *  Or using mapper.map with the class of the object model
          */
-        super(repository, mapper, d -> mapper.map(d, DataModelUser.class/* change for domain model */));
+        super(repository, mapper, d -> mapper.map(d, Currency.class/* change for domain model */));
     }
 
+    @Override
     public DataModelUser getInfoByUser(int id) {
 
         List<Object[]> results = repository.findUserDetails(id);

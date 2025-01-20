@@ -1,5 +1,5 @@
 .currency-list-container {
-    margin: 20px;
+    margin: 0px 40px ;
   }
   
   button {
@@ -8,11 +8,23 @@
   
   table {
     width: 100%;
-    overflow-x: auto;
-    display: block; /* Permitir scroll horizontal en pantallas pequeñas */
+    table-layout: fixed;
+    border-collapse: collapse;
   }
+  th, td {
+    text-align: left; 
+    word-wrap: break-word; 
+    overflow: hidden;
+    padding: 8px; 
+    border-bottom: 1px solid #ddd; 
+}
+
+th {
+    font-weight: bold;
+    background-color: #f8f9fa; 
+}
   
-  
+
   @media (max-width: 1024px) {
     .coin-list-container {
       margin: 10px;
@@ -28,7 +40,8 @@
   }
 
   .table_style{
-    
+    overflow-x: auto; /* Scroll horizontal para pantallas pequeñas */
+    display: block;
   }
   .title_button_align{
     display: flex;
@@ -36,6 +49,8 @@
     align-items: flex-end;
     flex-wrap: nowrap;
     flex-direction: row;
+    $gray: #9b9b9b;
+    border-bottom: 1px solid $gray;
   }
   .btn_amarillo{
     background: #FDDA24;

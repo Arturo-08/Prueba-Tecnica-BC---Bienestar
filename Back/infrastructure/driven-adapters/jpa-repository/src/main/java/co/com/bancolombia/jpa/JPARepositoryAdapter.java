@@ -17,7 +17,7 @@ public class JPARepositoryAdapter implements DataModelUserRepository{
     private  final JPARepository repository;
     @Override
     public DataModelUser getInfoByUser(String email) {
-
+        try{
         List<DataModelUserEntity> results = repository.findUserDetails(email);
         if (results.isEmpty()) {
             results = null;
@@ -36,17 +36,22 @@ public class JPARepositoryAdapter implements DataModelUserRepository{
                 ))
                 .toList();
 
-        return new DataModelUser(userName, userEmail, countryName, currencies);
+        return new DataModelUser(userName, userEmail, countryName, currencies);} catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public List<Currency> getInfoByCountry(String country) {
+        try {
         List<CurrencyEntity> results = repository.findByCountryName(country);
             return results.stream().map(row -> new Currency(
                     row.getId(),
                     row.getName(),
                     row.getSymbol(),
                     row.getExchange_rate()
-            )).toList();
+            )).toList();} catch (Exception e) {
+            throw new RuntimeException(e);
+            }
     }
 }

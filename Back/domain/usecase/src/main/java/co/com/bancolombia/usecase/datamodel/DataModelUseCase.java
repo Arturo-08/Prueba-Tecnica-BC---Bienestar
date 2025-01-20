@@ -15,9 +15,18 @@ public class DataModelUseCase {
     private final DataModelUserRepository dataModelUserRepository;
 
     public DataModelUser GetInfoByUser(String email) {
-        return dataModelUserRepository.getInfoByUser(email);
+        try{
+            return dataModelUserRepository.getInfoByUser(email);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
     public List<Currency> GetInfoByCountry(String country) {
-        return dataModelUserRepository.getInfoByCountry(country);
+        try{
+            return dataModelUserRepository.getInfoByCountry(country);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }

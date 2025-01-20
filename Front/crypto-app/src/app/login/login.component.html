@@ -1,0 +1,52 @@
+<div class="login-container">
+    <div class="sign_title">
+      <h2>Sign In</h2>
+    </div>
+    <div class="alingment">
+        <form [formGroup]="loginForm" (ngSubmit)="signInEventClick()" class="input_size">
+        <!-- Username Field -->
+            <div class="form__group field">
+                <input 
+                type="text" 
+                class="form__field" 
+                formControlName="username" 
+                placeholder="Name" 
+                id="inputName" 
+                [ngClass]="{'invalid': loginForm.get('username')?.invalid && loginForm.get('username')?.touched}" 
+                />
+                <label for="inputName" class="form__label">Username</label>
+                <small *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="error">
+                Username is required
+                </small>
+            </div>
+    
+        <!-- Password Field -->
+            <div class="form__group field">
+                <input 
+                type="password" 
+                class="form__field" 
+                formControlName="password" 
+                placeholder="Password" 
+                id="inputPassword" 
+                [ngClass]="{'invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}" 
+                />
+            <label for="inputPassword" class="form__label">Password</label>
+            <small *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error">
+            Password is required
+            </small>
+        </div>
+    
+        <!-- Submit Button -->
+        <div class="alingment">
+            <button  color="primary" class="btn_amarillo " type="submit" [disabled]="loginForm.invalid">
+                SIGN IN
+            </button>
+        </div>  
+        </form>
+    </div>
+  </div>
+
+
+
+  
+  

@@ -7,7 +7,9 @@ El proyecto sigue un enfoque modular para facilitar la escalabilidad y el manten
 
 - **Backend**: Contiene la lógica de negocio y los endpoints del microservicio. Se planteó para usar **"CleanArquitecture"** junto con su modelo de inversión de dependencias, para lograr desacoplar los modulos y dependencias y así ser más adaptable el código a cambio u actualizaiones.
 - **Frontend**: Maneja la interfaz de usuario y la interacción con el usuario. Se usó la arquitectura por defecto de los proyectos de Angular, esto permite una correcta comunicación entre componentes.
-- **Base de Datos (DB)**: Incluye el esquema (script) y la configuración de conexión para MySQL. Se planteó un modelo Relacional dada las relaciones de los usuarios.
+- **Base de Datos (DB)**: Incluye el esquema (script) y la configuración de conexión para MySQL. Se planteó un modelo Relacional dada las relaciones de los usuarios. Como se muestra en la siguiente imagen:
+  ![image](https://github.com/user-attachments/assets/a2344052-7621-4072-9e8c-39d4e1142e5d)
+
 
 ## **Requisitos Técnicos**
 

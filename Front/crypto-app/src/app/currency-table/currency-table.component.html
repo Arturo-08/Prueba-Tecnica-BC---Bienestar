@@ -1,0 +1,35 @@
+<div class="currency-list-container">
+    <div class="title_button_align">
+        <div><h2 class="title_style">Mis monedas</h2></div>
+        <div width="auto">
+            <button class="btn_amarillo">Agregar Moneda</button>
+        </div>
+    </div>
+    <!-- <button mat-raised-button color="accent" (click)="openDialog()">Agregar Moneda</button> -->
+    <div class="table_style">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef>#</th>
+        <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef>Símbolo</th>
+        <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="rate">
+        <th mat-header-cell *matHeaderCellDef>Tasa de cambio</th>
+        <td mat-cell *matCellDef="let element">{{ element.rate }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    </div>
+  </div>

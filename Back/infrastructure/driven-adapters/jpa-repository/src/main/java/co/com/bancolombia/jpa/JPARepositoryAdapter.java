@@ -6,12 +6,14 @@ import co.com.bancolombia.jpa.helper.AdapterOperations;
 import co.com.bancolombia.model.currency.Currency;
 import co.com.bancolombia.model.datamodeluser.DataModelUser;
 import co.com.bancolombia.model.datamodeluser.gateways.DataModelUserRepository;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,11 +21,10 @@ import java.util.List;
 public class JPARepositoryAdapter implements DataModelUserRepository{
 
     private  final JPARepository repository;
-
     @Override
-    public DataModelUser getInfoByUser(int id) {
+    public DataModelUser getInfoByUser(String email) {
 
-        List<DataModelUserEntity> results = repository.findUserDetails(id);
+        List<DataModelUserEntity> results = repository.findUserDetails(email);
         if (results.isEmpty()) {
             results = null;
         }
@@ -42,5 +43,16 @@ public class JPARepositoryAdapter implements DataModelUserRepository{
                 .toList();
 
         return new DataModelUser(userName, userEmail, countryName, currencies);
+    }
+
+    @Override
+    public List<Currency> getInfoByCountry(String country) {
+        List<CurrencyEntity> results = repository.findByCountryName(country);
+            return results.stream().map(row -> new Currency(
+                    row.getId(),
+                    row.getName(),
+                    row.getSymbol(),
+                    row.getExchange_rate()
+            )).toList();
     }
 }

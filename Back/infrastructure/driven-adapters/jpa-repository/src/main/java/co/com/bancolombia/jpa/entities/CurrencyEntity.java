@@ -18,10 +18,10 @@ import lombok.Setter;
 public class CurrencyEntity {
     @Id
     private int id;
-//    @Column
-//    private String name;
-//    @Column
-//    private String symbol;
-//    @Column
-//    private Double exchange_rate;
+    @Column
+    private String name;
+    @Column
+    private String symbol;
+    @Column
+    private Double exchange_rate;
 }

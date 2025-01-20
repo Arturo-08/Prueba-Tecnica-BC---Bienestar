@@ -13,10 +13,4 @@ public class Currency {
     private String name;
     private String symbol;
     private Double exchange_rate;
-
-    public Currency(String currencyName, String currencySymbol, Double exchangeRate) {
-        this.name = currencyName;
-        this.symbol = currencySymbol;
-        this.exchange_rate = exchangeRate;
-    }
 }

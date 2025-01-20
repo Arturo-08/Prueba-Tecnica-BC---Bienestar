@@ -32,7 +32,7 @@ class AdapterOperationsTest {
 
         when(objectMapper.map("value", Object.class)).thenReturn("value");
 
-        adapter = new JPARepositoryAdapter(repository, objectMapper);
+        adapter = new JPARepositoryAdapter(repository);
     }
 
     @Test

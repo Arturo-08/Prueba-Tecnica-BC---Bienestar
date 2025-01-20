@@ -5,8 +5,6 @@ import co.com.bancolombia.jpa.entities.DataModelUserEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.data.repository.query.QueryByExampleExecutor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -32,7 +30,26 @@ public interface JPARepository extends CrudRepository<CurrencyEntity, Integer> {
            JOIN 
                currencies curr ON uc.currency_id = curr.id
            WHERE 
-               u.id = :userId
+               u.email = :userEmail
            """, nativeQuery = true)
-        List<DataModelUserEntity> findUserDetails(@Param("userId") int userId);
+        List<DataModelUserEntity> findUserDetails(@Param("userEmail") String userEmail);
+
+        @Query(value = """
+           SELECT 
+                curr.id,
+                curr.name,
+                curr.symbol,
+                curr.exchange_rate 
+            FROM
+               countries c
+            JOIN
+               country_currency cc ON c.id = cc.country_id
+            JOIN
+               currencies curr ON cc.currency_id = curr.id
+            WHERE
+               c.name = :countryName;
+           """, nativeQuery = true)
+        List<CurrencyEntity> findByCountryName(@Param("countryName")String countryName);
+
+
 }

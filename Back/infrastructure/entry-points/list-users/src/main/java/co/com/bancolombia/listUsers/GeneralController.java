@@ -1,7 +1,7 @@
 package co.com.bancolombia.listUsers;
 
-import co.com.bancolombia.model.interfaces.DataModelUseCaseInterface;
-import co.com.bancolombia.model.requestmodelid.RequestModelId;
+import co.com.bancolombia.model.requestmodels.RequestModelByCountry;
+import co.com.bancolombia.model.requestmodels.RequestModelByEmail;
 import co.com.bancolombia.usecase.datamodel.DataModelUseCase;
 import lombok.RequiredArgsConstructor;
 
@@ -24,12 +24,23 @@ public class GeneralController {
         return ResponseEntity.ok("Backend is running!");
     }
     @PostMapping(value = "/list-users")
-    public ResponseEntity<Object> listUsers( @RequestBody RequestModelId requestModelId) {
+    public ResponseEntity<Object> listUsers( @RequestBody RequestModelByEmail requestModelByEmail) {
         ResponseEntity <Object> response ;
         try{
-            Object body = dataModelUseCase.GetInfoByUser(requestModelId.getId());
+            Object body = dataModelUseCase.GetInfoByUser(requestModelByEmail.getEmail());
             response= ResponseEntity.ok(body);
 
+        }catch (Exception e){
+            response = ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(e.getMessage());
+        }
+        return response;
+    }
+    @PostMapping(value = "/list-currencies-by-country")
+    public ResponseEntity<Object> listCurrenciesByCountry( @RequestBody RequestModelByCountry requestModelByCountry) {
+        ResponseEntity <Object> response ;
+        try{
+            Object body = dataModelUseCase.GetInfoByCountry(requestModelByCountry.getCountry());
+            response = ResponseEntity.ok(body);
         }catch (Exception e){
             response = ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(e.getMessage());
         }

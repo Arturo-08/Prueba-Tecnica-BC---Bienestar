@@ -1,12 +1,12 @@
 package co.com.bancolombia.model.requestmodels;
-import lombok.*;
-//import lombok.NoArgsConstructor;
 
+
+import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder(toBuilder = true)
 public class RequestModelByEmail {
     private String email;

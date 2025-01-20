@@ -5,7 +5,7 @@ Este es un repositorio para realizar una prueba técnica en el rol Ingeniero de 
 
 El proyecto sigue un enfoque modular para facilitar la escalabilidad y el mantenimiento:
 
-- **Backend**: Contiene la lógica de negocio y los endpoints del microservicio. Se planteó para usar "CleanArquitecture" junto con su modelo de inversión de dependencias, para lograr desacoplar los modulos y dependencias y así ser más adaptable el código a cambio u actualizaiones.
+- **Backend**: Contiene la lógica de negocio y los endpoints del microservicio. Se planteó para usar **"CleanArquitecture"** junto con su modelo de inversión de dependencias, para lograr desacoplar los modulos y dependencias y así ser más adaptable el código a cambio u actualizaiones.
 - **Frontend**: Maneja la interfaz de usuario y la interacción con el usuario. Se usó la arquitectura por defecto de los proyectos de Angular, esto permite una correcta comunicación entre componentes.
 - **Base de Datos (DB)**: Incluye el esquema (script) y la configuración de conexión para MySQL. Se planteó un modelo Relacional dada las relaciones de los usuarios.
 

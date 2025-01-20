@@ -1,140 +1,140 @@
-
 .login-container {
-    width: 30%;
-    display: block;
-    justify-self: center;
+  width: 30%;
+  display: block;
+  justify-self: center;
+  flex-direction: column;
+  padding: 10px 10px 10px 10px;
+}
+
+.full-width {
+  width: 100%;
+  margin: 10px 0;
+}
+
+@media (max-width: 1024px) {
+  .login-container {
+    max-width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    display: flex;
     flex-direction: column;
-    padding: 10px 10px 10px 10px;
   }
-  
-  .full-width {
-    width: 100%;
-    margin: 10px 0;
+}
+
+$black: #000000;
+$white: #ffffff;
+$gray: #9b9b9b;
+.form__group {
+  position: relative;
+  padding: 20px 0px 20px 0px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid $black;
+  outline: 0;
+  font-size: 0.8rem;
+  color: $black;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.1s;
+
+  &::placeholder {
+    color: transparent;
   }
-  
-  @media (max-width: 1024px) {
-    .login-container {
-      max-width: 100%;
-      padding: 10px;
-      font-size: 1rem;
-      display: flex;
-      flex-direction: column;
-    }
-  }
-  
-  $black: #000000;
-  $white: #ffffff;
-  $gray: #9b9b9b;
-  .form__group {
-    position: relative;
-    padding: 20px 0px 20px 0px;
-    margin-top: 10px;
-    width: 100%;
-  }
-  
-  .form__field {
-    font-family: inherit;
-    width: 100%;
-    border: 0;
-    border-bottom: 1px solid $black;
-    outline: 0;
+
+  &:placeholder-shown ~ .form__label {
     font-size: 0.8rem;
-    color: $black;
-    padding: 7px 0;
-    background: transparent;
-    transition: border-color 0.1s;
-  
-    &::placeholder {
-      color: transparent;
-    }
-  
-    &:placeholder-shown ~ .form__label {
-      font-size: 0.8rem;
-      cursor: text;
-      top: 20px;
-    }
+    cursor: text;
+    top: 20px;
   }
-  
-  .form__label {
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.1s;
+  font-size: 0.8rem;
+  color: $gray;
+}
+
+.form__field:focus {
+  ~ .form__label {
     position: absolute;
     top: 0;
     display: block;
     transition: 0.1s;
     font-size: 0.8rem;
-    color: $gray;
-  }
-  
-  .form__field:focus {
-    ~ .form__label {
-      position: absolute;
-      top: 0;
-      display: block;
-      transition: 0.1s;
-      font-size: 0.8rem;
-      color: $black;
-      font-weight:700;    
-    }
-    padding-bottom: 6px;  
+    color: $black;
     font-weight: 700;
-    border-width: 2px;
-    border-image: linear-gradient(to right, $black,$black);
-    border-image-slice: 1;
   }
-  /* reset input */
-  .form__field{
-    &:required,&:invalid { box-shadow:none; }
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 2px;
+  border-image: linear-gradient(to right, $black, $black);
+  border-image-slice: 1;
+}
+/* reset input */
+.form__field {
+  &:required,
+  &:invalid {
+    box-shadow: none;
   }
-  /* demo */
-  body {
-    font-family: 'Poppins', sans-serif; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-size: 0.8rem;
-    background-color:$black;
-  }
-  .btn_amarillo{
-    background: #FDDA24;
-    border-radius: 60px;
-    font-family: "OpenSans-Regular";
-    color: #2C2A29;
-    font-weight: bold;
-    margin: 10px 0;
-    padding: 8px 18px;
-    border: 0px;
-    cursor: pointer;
-    
-  }
-  .sign_title{
-    display: flex;
-    align-items: flex-start;
-    width: 100%;
-    border-bottom: 1px solid $gray;
-  }
-  .input_size{
-    width: 80%; 
-    display: block
-  }
-  .aling_button{
-    display: flex;
-    align-items:center;
-  }
-  .alingment{
-    justify-content: center;
-    display:flex;
-    width: 100%;
-  }
+}
+/* demo */
+body {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 0.8rem;
+  background-color: $black;
+}
+.btn_amarillo {
+  background: #fdda24;
+  border-radius: 60px;
+  font-family: "OpenSans-Regular";
+  color: #2c2a29;
+  font-weight: bold;
+  margin: 10px 0;
+  padding: 8px 18px;
+  border: 0px;
+  cursor: pointer;
+}
+.sign_title {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  border-bottom: 1px solid $gray;
+}
+.input_size {
+  width: 80%;
+  display: block;
+}
+.aling_button {
+  display: flex;
+  align-items: center;
+}
+.alingment {
+  justify-content: center;
+  display: flex;
+  width: 100%;
+}
 
-  .invalid {
-    border-color: red;
-  }
-  
-  .error {
-    color: red;
-    font-size: 12px;
-    margin-top: 4px;
-    display: block;
-  }
-  
+.invalid {
+  border-color: red;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}

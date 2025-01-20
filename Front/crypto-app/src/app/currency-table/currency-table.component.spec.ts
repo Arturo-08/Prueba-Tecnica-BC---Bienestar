@@ -8,10 +8,9 @@ describe('CurrencyTableComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CurrencyTableComponent]
-    })
-    .compileComponents();
-    
+      imports: [CurrencyTableComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(CurrencyTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

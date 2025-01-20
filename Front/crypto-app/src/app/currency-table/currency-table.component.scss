@@ -1,70 +1,70 @@
 .currency-list-container {
-    margin: 0px 40px ;
-  }
-  
-  button {
-    margin-bottom: 10px;
-  }
-  
-  table {
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-  }
-  th, td {
-    text-align: left; 
-    word-wrap: break-word; 
-    overflow: hidden;
-    padding: 8px; 
-    border-bottom: 1px solid #ddd; 
+  margin: 0px 40px;
+}
+
+button {
+  margin-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+th,
+td {
+  text-align: left;
+  word-wrap: break-word;
+  overflow: hidden;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
 }
 
 th {
-    font-weight: bold;
-    background-color: #f8f9fa; 
+  font-weight: bold;
+  background-color: #f8f9fa;
 }
-  
 
-  @media (max-width: 1024px) {
-    .coin-list-container {
-      margin: 10px;
-    }
-  
-    table {
-      font-size: 14px; /* Reducir el tamaño de fuente en pantallas pequeñas */
-    }
-  
-    button {
-      width: 100%; /* Botón ocupa el ancho completo en resoluciones pequeñas */
-    }
+@media (max-width: 1024px) {
+  .coin-list-container {
+    margin: 10px;
   }
 
-  .table_style{
-    overflow-x: auto; /* Scroll horizontal para pantallas pequeñas */
-    display: block;
+  table {
+    font-size: 14px; /* Reducir el tamaño de fuente en pantallas pequeñas */
   }
-  .title_button_align{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    $gray: #9b9b9b;
-    border-bottom: 1px solid $gray;
+
+  button {
+    width: 100%; /* Botón ocupa el ancho completo en resoluciones pequeñas */
   }
-  .btn_amarillo{
-    background: #FDDA24;
-    border-radius: 60px;
-    font-family: "OpenSans-Regular";
-    color: #2C2A29;
-    font-weight: bold;
-    margin: 5px 0;
-    padding: 8px 18px;
-    border: 0px;
-    cursor: pointer;
-    width: auto;
-  }
-  .title_style{
-    margin-top: 0px;
-    margin-bottom: 5px;
-  }
+}
+
+.table_style {
+  overflow-x: auto; /* Scroll horizontal para pantallas pequeñas */
+  display: block;
+}
+.title_button_align {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  $gray: #9b9b9b;
+  border-bottom: 1px solid $gray;
+}
+.btn_amarillo {
+  background: #fdda24;
+  border-radius: 60px;
+  font-family: "OpenSans-Regular";
+  color: #2c2a29;
+  font-weight: bold;
+  margin: 5px 0;
+  padding: 8px 18px;
+  border: 0px;
+  cursor: pointer;
+  width: auto;
+}
+.title_style {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}

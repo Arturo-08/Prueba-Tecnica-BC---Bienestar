@@ -1,8 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatButton } from '@angular/material/button';
-import {MatTableModule} from '@angular/material/table';
-
+import { MatTableModule } from '@angular/material/table';
 
 export interface Currency {
   id: number;
@@ -18,27 +17,26 @@ export interface UserWithCurrencies {
   currencies: Currency[];
 }
 
-
 @Component({
   selector: 'app-currency-table',
   standalone: true,
-  imports: [MatTableModule,MatButton,CurrencyPipe],
+  imports: [MatTableModule, MatButton, CurrencyPipe],
   templateUrl: './currency-table.component.html',
-  styleUrl: './currency-table.component.scss'
+  styleUrl: './currency-table.component.scss',
 })
-
 export class CurrencyTableComponent {
-  @Input() childMessage: any ;
-  ngOnInit(): void{
-    console.log("Data",this.childMessage);
+  @Input() childMessage: any;
+  ngOnInit(): void {
+    console.log('Data', this.childMessage);
     this.fillTable();
-  };
-  constructor(){}
+  }
+  constructor() {}
   displayedColumns: string[] = ['index', 'symbol', 'name', 'rate'];
   dataSource: any;
-  tableData: { index: number; symbol: string; name: string; rate: number }[] = [];
-  
-  fillTable():void{
+  tableData: { index: number; symbol: string; name: string; rate: number }[] =
+    [];
+
+  fillTable(): void {
     this.dataSource = [];
     for (let i = 0; i < this.childMessage.currencies.length; i++) {
       const currency = this.childMessage.currencies[i];
@@ -48,6 +46,6 @@ export class CurrencyTableComponent {
         name: currency.name,
         rate: currency.exchange_rate,
       });
-  }
+    }
   }
 }

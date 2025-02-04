@@ -8,6 +8,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { reducers, metaReducers } from './state/reducers/app.reducer';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideEffects } from '@ngrx/effects';
 
 
 export const appConfig: ApplicationConfig = {
@@ -16,7 +17,8 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideAnimationsAsync(),
     provideHttpClient(),
-    provideStore(reducers,{metaReducers}),
-    provideStoreDevtools({ name: "TEST"})
+    provideStore(reducers, { metaReducers }),
+    provideStoreDevtools({ name: "TEST" }),
+    provideEffects()
 ],
 };

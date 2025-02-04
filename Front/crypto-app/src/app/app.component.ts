@@ -1,17 +1,20 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { CurrencyTableComponent } from './currency-table/currency-table.component';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { LoginComponent } from './components/login/login.component';
+import { CurrencyTableComponent } from './components/currency-table/currency-table.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
     LoginComponent,
     CurrencyTableComponent,
-    HttpClientModule,
+    HttpClientModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

@@ -2,7 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { ServiceApiService } from '../../services/service-api.service';
+import { BackApiService } from '../../services/back.api.service';
 import { Currency } from '../../models/currency.model';
 import { merge, mergeAll, Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -29,7 +29,7 @@ export class CurrencyTableComponent {
     console.log(this.userCurrencies);
     //this.getCurrenciesByCountry();
   }
-  constructor(private apiService: ServiceApiService, private store: Store<StateApp> ) {}
+  constructor(private apiService: BackApiService, private store: Store<StateApp> ) {}
   displayedColumns: string[] = ['index', 'symbol', 'name', 'exchange_rate'];
   dataSourceCurrencies: { index: number; id:number; symbol: string; name: string; rate: number }[] =
     [];

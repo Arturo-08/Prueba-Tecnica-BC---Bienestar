@@ -5,38 +5,55 @@ import co.com.bancolombia.jpa.entities.DataModelUserEntity;
 import co.com.bancolombia.model.currency.Currency;
 import co.com.bancolombia.model.datamodeluser.DataModelUser;
 import co.com.bancolombia.model.datamodeluser.gateways.DataModelUserRepository;
+import co.com.bancolombia.model.responses.RequestModelByEmail;
+import co.com.bancolombia.model.responses.ResponseAuthentication;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class JPARepositoryAdapter implements DataModelUserRepository{
 
     private  final JPARepository repository;
+
+    private final PasswordEncoder passwordEncoder;
+
     @Override
-    public DataModelUser getInfoByUser(String email) {
+    public ResponseAuthentication getInfoByUser(RequestModelByEmail credentials) {
         try{
-        List<DataModelUserEntity> results = repository.findUserDetails(email);
-        if (results.isEmpty()) {
-            results = null;
+            ResponseAuthentication authenticationResult = new ResponseAuthentication();
+            Optional <List<DataModelUserEntity>> results =
+                    repository.findUserDetails(credentials.getEmail());
+
+            if (results.isEmpty() || results.get().isEmpty()) {
+                authenticationResult.setAuthenticated(false);
+                authenticationResult.setMessage("User not found");
+                authenticationResult.setUserInfo(null);
+                return authenticationResult;
+            }
+            List<DataModelUserEntity> resultsList = results.get();
+
+            DataModelUserEntity userInfo = resultsList.get(0);
+
+            if(passwordEncoder.matches(credentials.getPassword(),userInfo.getPassword())){
+                authenticationResult.setAuthenticated(true);
+                authenticationResult.setMessage("Authentication successful");
+                authenticationResult.setUserInfo(buildResponseModel(userInfo,resultsList));
+            }
+            else {
+                authenticationResult.setAuthenticated(false);
+                authenticationResult.setMessage("Incorrect password");
+                authenticationResult.setUserInfo(null);
+
+            }
+
+            return authenticationResult;
         }
-        DataModelUserEntity userInfo = results.get(0);
-        String userName =  userInfo.getUserName();
-        String userEmail =  userInfo.getUserEmail();
-        String countryName =  userInfo.getCountryName();
-
-        List<Currency> currencies = results.stream()
-                .map(row -> new Currency(
-                        row.getId(),
-                        row.getCurrencyName(),
-                        row.getCurrencySymbol(),
-                        row.getExchangeRate()
-                ))
-                .toList();
-
-        return new DataModelUser(userName, userEmail, countryName, currencies);} catch (Exception e) {
+        catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -53,5 +70,18 @@ public class JPARepositoryAdapter implements DataModelUserRepository{
             )).toList();} catch (Exception e) {
             throw new RuntimeException(e);
             }
+    }
+
+    public DataModelUser buildResponseModel(DataModelUserEntity userInfo , List<DataModelUserEntity> results) {
+        List<Currency> currencies = results.stream()
+                .map(row -> new Currency(
+                        row.getId(),
+                        row.getCurrencyName(),
+                        row.getCurrencySymbol(),
+                        row.getExchangeRate()
+                ))
+                .toList();
+
+        return new DataModelUser(userInfo.getUserName(), userInfo.getUserEmail(), userInfo.getCountryName(), currencies);
     }
 }

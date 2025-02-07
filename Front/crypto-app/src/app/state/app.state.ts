@@ -1,13 +1,10 @@
-import { initialMainStates, MainStates } from "../models/mainStates.model";
-import { initialUserInfo, UserInfo } from "../models/userInfo.model";
+import { initialMainApp, MainApp } from "../models/mainApp.model";
 
 
 export interface StateApp {
-   mainStates: MainStates,
-   userInfo: UserInfo,
+   mainApp: MainApp,
 }
 
 export const initialStateApp:StateApp = {
-   mainStates: initialMainStates,
-   userInfo: initialUserInfo,
+   mainApp:initialMainApp,
  }

@@ -13,21 +13,15 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class DataModelUserEntity {
+public class UserEntity {
     @Id
     private int id;
-    @Column(name = "name")
-    private String userName;
-    @Column(name = "email")
-    private String userEmail;
+    @Column
+    private String name;
     @Column
     private String password;
     @Column
-    private String countryName;
+    private String email;
     @Column
-    private String currencyName;
-    @Column(name = "symbol")
-    private String currencySymbol;
-    @Column(name = "exchange_rate")
-    private Double exchangeRate;
+    private int country_id;
 }

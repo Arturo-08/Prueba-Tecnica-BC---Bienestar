@@ -1,6 +1,8 @@
-<div *ngIf="isLoggedIn; else listCurrencyTable">
-  <b *ngIf="(loading$| async)">Cargando...</b>
-  <div class="login-container">
+  <div *ngIf="(loading$| async)">
+    <mat-spinner></mat-spinner>
+    <p>Cargando...</p>
+  </div>
+  <div  class="login-container">
     <div class="sign_title">
       <h2>Sign In</h2>
     </div>
@@ -14,24 +16,24 @@
           <input
             type="text"
             class="form__field"
-            formControlName="username"
-            placeholder="Name"
-            id="inputName"
+            formControlName="email"
+            placeholder="Email"
+            id="inputEmail"
             [ngClass]="{
               invalid:
-                loginForm.get('username')?.invalid &&
-                loginForm.get('username')?.touched
+                loginForm.get('email')?.invalid &&
+                loginForm.get('email')?.touched
             }"
           />
-          <label for="inputName" class="form__label">Username</label>
+          <label for="inputEmail" class="form__label">Email</label>
           <small
             *ngIf="
-              loginForm.get('username')?.invalid &&
-              loginForm.get('username')?.touched
+              loginForm.get('email')?.invalid &&
+              loginForm.get('email')?.touched
             "
             class="error"
           >
-            Username is required
+            Email is required
           </small>
         </div>
         <div class="form__group field">
@@ -71,7 +73,7 @@
       </form>
     </div>
   </div>
-</div>
-<ng-template #listCurrencyTable>
-  <app-currency-table></app-currency-table>
-</ng-template>
+  <router-outlet></router-outlet>
+  <!-- <ng-template #currencyTable>
+    <app-currency-table></app-currency-table>
+  </ng-template> -->

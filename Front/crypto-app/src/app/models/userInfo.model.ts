@@ -1,6 +1,7 @@
 import { Currency } from './currency.model';
 
 export interface UserInfo {
+  isAuthenticated: boolean,
   userName: String;
   userEmail: String;
   countryName: String;
@@ -12,4 +13,5 @@ export const initialUserInfo: UserInfo = {
   userEmail: '',
   countryName: '',
   currencies: [],
+  isAuthenticated: false,
 };

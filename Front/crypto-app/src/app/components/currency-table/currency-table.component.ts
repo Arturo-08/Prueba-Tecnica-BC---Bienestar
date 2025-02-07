@@ -4,12 +4,10 @@ import { MatButton } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { BackApiService } from '../../services/back.api.service';
 import { Currency } from '../../models/currency.model';
-import { merge, mergeAll, Observable } from 'rxjs';
+
 import { Store } from '@ngrx/store';
 import { StateApp } from '../../state/app.state';
-import { selectUserInfo } from '../../state/selectors/app.selectors';
-import { UserInfo } from '../../models/userInfo.model';
-import { selectUserCurrencies } from '../../state/selectors/userInfo.selector';
+import { selectUserCurrencies } from '../../state/selectors/app.selectors';
 
 
 
@@ -29,7 +27,7 @@ export class CurrencyTableComponent {
     console.log(this.userCurrencies);
     //this.getCurrenciesByCountry();
   }
-  constructor(private apiService: BackApiService, private store: Store<StateApp> ) {}
+  constructor(private store: Store<StateApp> ) {}
   displayedColumns: string[] = ['index', 'symbol', 'name', 'exchange_rate'];
   dataSourceCurrencies: { index: number; id:number; symbol: string; name: string; rate: number }[] =
     [];

@@ -4,6 +4,8 @@ import co.com.bancolombia.model.currency.Currency;
 import co.com.bancolombia.model.datamodeluser.DataModelUser;
 import co.com.bancolombia.model.datamodeluser.gateways.DataModelUserRepository;
 
+import co.com.bancolombia.model.responses.RequestModelByEmail;
+import co.com.bancolombia.model.responses.ResponseAuthentication;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -14,9 +16,9 @@ public class DataModelUseCase {
 
     private final DataModelUserRepository dataModelUserRepository;
 
-    public DataModelUser GetInfoByUser(String email) {
+    public ResponseAuthentication GetInfoByUser(RequestModelByEmail credentials) {
         try{
-            return dataModelUserRepository.getInfoByUser(email);
+            return dataModelUserRepository.getInfoByUser(credentials);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

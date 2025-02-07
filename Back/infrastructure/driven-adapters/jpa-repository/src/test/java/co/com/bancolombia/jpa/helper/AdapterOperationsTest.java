@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.data.domain.Example;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,13 +27,16 @@ class AdapterOperationsTest {
 
     private JPARepositoryAdapter adapter;
 
+    @Mock
+    private PasswordEncoder passwordEncoder;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
 
         when(objectMapper.map("value", Object.class)).thenReturn("value");
 
-        adapter = new JPARepositoryAdapter(repository);
+        adapter = new JPARepositoryAdapter(repository, passwordEncoder);
     }
 
     @Test

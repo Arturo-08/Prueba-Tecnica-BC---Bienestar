@@ -8,31 +8,33 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface JPARepository extends CrudRepository<CurrencyEntity, Integer> {
 
         @Query(value = """
-           SELECT            
-               u.name,  
+           SELECT           \s
+               u.name, \s
                u.email,
+               u.password,
                ctry.name AS countryName,
                curr.id,
                curr.name AS currencyName,
                curr.symbol,
-               curr.exchange_rate 
-           FROM 
+               curr.exchange_rate\s
+           FROM\s
                users u
-           JOIN 
+           JOIN\s
                countries ctry ON u.country_id = ctry.id
-           JOIN 
+           JOIN\s
                user_currency uc ON u.id = uc.user_id
-           JOIN 
+           JOIN\s
                currencies curr ON uc.currency_id = curr.id
-           WHERE 
+           WHERE\s
                u.email = :userEmail
-           """, nativeQuery = true)
-        List<DataModelUserEntity> findUserDetails(@Param("userEmail") String userEmail);
+          \s""", nativeQuery = true)
+        Optional<List<DataModelUserEntity>> findUserDetails(@Param("userEmail") String userEmail);
 
         @Query(value = """
            SELECT 
@@ -50,6 +52,5 @@ public interface JPARepository extends CrudRepository<CurrencyEntity, Integer> {
                c.name = :countryName;
            """, nativeQuery = true)
         List<CurrencyEntity> findByCountryName(@Param("countryName")String countryName);
-
 
 }

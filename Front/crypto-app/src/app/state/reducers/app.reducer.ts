@@ -9,13 +9,11 @@ import {
   on,
 } from '@ngrx/store';
 import { StateApp } from '../app.state';
-import { mainStatesReducer } from './mainStates.reducer';
-import { userInfoReducer } from './userInfo.reducer';
+import { mainAppReducer } from './mainAppReducer';
 
 
 export const reducers: ActionReducerMap<StateApp> = {
-  mainStates: mainStatesReducer,
-  userInfo: userInfoReducer
+  mainApp: mainAppReducer
 };
 
 export const metaReducers: MetaReducer<StateApp>[] = isDevMode() ? [] : [];

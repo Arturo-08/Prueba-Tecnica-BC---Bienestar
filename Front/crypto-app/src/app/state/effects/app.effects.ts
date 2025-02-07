@@ -13,13 +13,10 @@ export class AppEffects {
   getInfoUser$ = createEffect(() => {
     return this.actions$.pipe(
         ofType(getInfoUser),
-        tap(() =>{console.log("Login Api in queue");}),
         mergeMap((action) => {
-            console.log("Login Api in process");
-            return this.backApiService.postData("list-users", action.loginCredentials).pipe(
-                map(response => successGetInfoUser({userInfo:response})),
-                catchError((err : { message: string }) => of(errorGetInfoUser({errorMsg: err.message}))),
-                tap(() => {console.log("Login Api end")})
+            return this.backApiService.postData("authentication", action.loginCredentials).pipe(
+                map(response => successGetInfoUser({authentication:response})),
+                catchError(err => of(errorGetInfoUser({errorMsg: err.message}))),
             )
         })
     );

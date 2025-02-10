@@ -36,9 +36,9 @@ export const selectCountryDetails = createSelector(
     (state: MainApp) => state.countryDetails
 )
 
-export const selectUserCurrencies = createSelector(
+export const selectUserCurrenciesAndCountryName = createSelector(
     selectUserInfo,
-    (state: UserInfo) => state.currencies
+    (state: UserInfo) => {return {countryName: state.countryName , currencies: state.currencies}}
 )
 
 export const selectAuthentication = createSelector(

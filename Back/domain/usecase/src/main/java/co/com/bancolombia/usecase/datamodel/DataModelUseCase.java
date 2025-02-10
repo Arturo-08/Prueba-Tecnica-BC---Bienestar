@@ -1,11 +1,12 @@
 package co.com.bancolombia.usecase.datamodel;
 
 import co.com.bancolombia.model.currency.Currency;
-import co.com.bancolombia.model.datamodeluser.DataModelUser;
 import co.com.bancolombia.model.datamodeluser.gateways.DataModelUserRepository;
 
-import co.com.bancolombia.model.responses.RequestModelByEmail;
+import co.com.bancolombia.model.requests.RequestModelByEmail;
+
 import co.com.bancolombia.model.responses.ResponseAuthentication;
+import co.com.bancolombia.model.responses.ResponseCountryCurrencies;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class DataModelUseCase {
             throw new RuntimeException(e);
         }
     }
-    public List<Currency> GetInfoByCountry(String country) {
+    public ResponseCountryCurrencies GetInfoByCountry(String country) {
         try{
             return dataModelUserRepository.getInfoByCountry(country);
         } catch (Exception e) {

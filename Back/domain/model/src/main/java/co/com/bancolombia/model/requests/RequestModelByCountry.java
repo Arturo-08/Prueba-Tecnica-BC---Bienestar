@@ -1,4 +1,4 @@
-package co.com.bancolombia.model.responses;
+package co.com.bancolombia.model.requests;
 
 import lombok.*;
 

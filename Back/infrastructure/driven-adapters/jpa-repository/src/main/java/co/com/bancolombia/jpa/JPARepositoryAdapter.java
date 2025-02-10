@@ -5,8 +5,9 @@ import co.com.bancolombia.jpa.entities.DataModelUserEntity;
 import co.com.bancolombia.model.currency.Currency;
 import co.com.bancolombia.model.datamodeluser.DataModelUser;
 import co.com.bancolombia.model.datamodeluser.gateways.DataModelUserRepository;
-import co.com.bancolombia.model.responses.RequestModelByEmail;
+import co.com.bancolombia.model.requests.RequestModelByEmail;
 import co.com.bancolombia.model.responses.ResponseAuthentication;
+import co.com.bancolombia.model.responses.ResponseCountryCurrencies;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -59,15 +60,21 @@ public class JPARepositoryAdapter implements DataModelUserRepository{
     }
 
     @Override
-    public List<Currency> getInfoByCountry(String country) {
+    public ResponseCountryCurrencies getInfoByCountry(String country) {
         try {
+
         List<CurrencyEntity> results = repository.findByCountryName(country);
-            return results.stream().map(row -> new Currency(
+            Currency [] currencies =  results.stream().map(row -> new Currency(
                     row.getId(),
                     row.getName(),
                     row.getSymbol(),
                     row.getExchange_rate()
-            )).toList();} catch (Exception e) {
+            )).toArray(Currency[]::new);
+            return new ResponseCountryCurrencies().toBuilder()
+                    .countryName(country)
+                    .currencies(currencies).build();
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
             }
     }

@@ -21,7 +21,7 @@ import { CurrencyTableComponent } from '../currency-table/currency-table.compone
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, CurrencyTableComponent, 
-    MatProgressSpinnerModule, RouterLink, RouterOutlet],
+    MatProgressSpinnerModule, RouterOutlet],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   authenticationFlag$: Observable<Boolean> = new Observable(); 
 
   ngOnInit(): void {
-    this.loading$ = this.store.select(selectLoadingState);
+    
     this.authenticationFlag$ = this.store.select(selectAuthentication).pipe(startWith(false));
     this.authenticationFlag$.subscribe((isAuthenticated) => {
       if (isAuthenticated) {
@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
     private store: Store<StateApp>,
     private router: Router
   ) {
+    this.loading$ = this.store.select(selectLoadingState);
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required],

@@ -1,7 +1,8 @@
 package co.com.bancolombia.listUsers;
 
-import co.com.bancolombia.model.responses.RequestModelByCountry;
-import co.com.bancolombia.model.responses.RequestModelByEmail;
+import co.com.bancolombia.model.requests.RequestModelByCountry;
+import co.com.bancolombia.model.requests.RequestModelByEmail;
+import co.com.bancolombia.model.responses.ResponseHttp;
 import co.com.bancolombia.usecase.datamodel.DataModelUseCase;
 import lombok.RequiredArgsConstructor;
 
@@ -20,31 +21,50 @@ public class GeneralController {
     private final DataModelUseCase dataModelUseCase ;
 
     @GetMapping("/health")
-    public ResponseEntity<String> health() {
-        return ResponseEntity.ok("Backend is running!");
+    public ResponseEntity<ResponseHttp> health() {
+        return ResponseEntity.ok(ResponseHttp.builder()
+                .statusCode(HttpStatus.OK.value())
+                .message("Backend is running")
+                .data(null).build());
     }
 
     @PostMapping(value = "/authentication")
-    public ResponseEntity<Object> listUsers( @RequestBody RequestModelByEmail requestModelByEmail) {
-        ResponseEntity <Object> response ;
+    public ResponseEntity<ResponseHttp> listUsers( @RequestBody RequestModelByEmail requestModelByEmail) {
+        ResponseEntity <ResponseHttp> response ;
         try{
             Object body = dataModelUseCase.GetInfoByUser(requestModelByEmail);
-            response= ResponseEntity.ok(body);
+            response= ResponseEntity.ok(ResponseHttp.builder()
+                    .statusCode(HttpStatus.OK.value())
+                    .data(body)
+                    .message("Request completed successfully")
+                    .build());
 
         }catch (Exception e){
-            response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+            response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseHttp.builder()
+                            .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                            .message(e.getMessage())
+                            .data(null)
+                            .build());
         }
         return response;
     }
 
     @PostMapping(value = "/list-currencies-by-country")
-    public ResponseEntity<Object> listCurrenciesByCountry( @RequestBody RequestModelByCountry requestModelByCountry) {
-        ResponseEntity <Object> response ;
+    public ResponseEntity<ResponseHttp> listCurrenciesByCountry( @RequestBody RequestModelByCountry requestModelByCountry) {
+        ResponseEntity <ResponseHttp> response ;
         try{
             Object body = dataModelUseCase.GetInfoByCountry(requestModelByCountry.getCountry());
-            response = ResponseEntity.ok(body);
+            response = ResponseEntity.ok(ResponseHttp.builder()
+                    .statusCode(HttpStatus.OK.value())
+                    .data(body)
+                    .message("Request completed successfully")
+                    .build());
         }catch (Exception e){
-            response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+            response = ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseHttp.builder()
+                    .statusCode(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                    .message(e.getMessage())
+                    .data(null)
+                    .build());
         }
         return response;
     }

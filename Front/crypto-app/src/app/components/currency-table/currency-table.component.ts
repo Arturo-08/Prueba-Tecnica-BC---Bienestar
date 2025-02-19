@@ -5,20 +5,15 @@ import { MatTableModule } from '@angular/material/table';
 import { Currency } from '../../models/currency.model';
 
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, delay, Observable, take } from 'rxjs';
-import { initialMainApp, MainApp } from '../../models/mainApp.model';
+import { Observable } from 'rxjs';
+import { CountryDetails } from '../../models/countryDetails.models';
+import { UserInfo } from '../../models/userInfo.model';
 import { getCurrenciesByCountry } from '../../state/app.actions';
 import { StateApp } from '../../state/app.state';
 import {
   selectCountryDetails,
-  selectMainApp,
-  selectUserCurrenciesAndCountryName,
-  selectUserInfo,
+  selectUserInfo
 } from '../../state/selectors/app.selectors';
-import { stat } from 'fs';
-import { __values } from 'tslib';
-import { CountryDetails } from '../../models/countryDetails.models';
-import { UserInfo } from '../../models/userInfo.model';
 
 @Component({
   selector: 'app-currency-table',

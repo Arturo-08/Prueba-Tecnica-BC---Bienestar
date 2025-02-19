@@ -15,12 +15,13 @@ import { getInfoUser } from '../../state/app.actions';
 import { StateApp } from '../../state/app.state';
 import { selectApp, selectAuthentication, selectLoadingState, selectMainApp } from '../../state/selectors/app.selectors';
 import { CurrencyTableComponent } from '../currency-table/currency-table.component';
+import { ModalComponent } from '../modal/modal.component';
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, CurrencyTableComponent, 
+  imports: [CommonModule, ReactiveFormsModule, CurrencyTableComponent, ModalComponent, 
     MatProgressSpinnerModule, RouterOutlet],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
